@@ -1,16 +1,19 @@
-package com.gathergrid.gathergridfeatures;
+package com.gathergrid.controller;
 
 import java.io.*;
 
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "helloServlet", value = "/hello-servlet")
-public class HelloServlet extends HttpServlet {
+@WebServlet(name = "initialServlet", value = "", loadOnStartup = 1)
+public class InitialServlet extends HttpServlet {
     private String message;
 
     public void init() {
         message = "Hello World!";
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
